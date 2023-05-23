@@ -2,10 +2,11 @@
 import mysql.connector
 from mysql.connector import Error
 
-def create_server_connection(host_name, user_name, user_password):
+def create_server_connection(host_name, port, user_name, user_password):
     try:
         connection = mysql.connector.connect(
             host=host_name,
+            port=port,
             user=user_name,
             passwd=user_password
         )
@@ -22,6 +23,7 @@ def verificar_banco():
     """
     db = mysql.connector.connect(
     host="db4free.net",
+    port=3306,
     user="fatecmm",
     password="DanRocha!@#qaz"
 )
@@ -49,6 +51,7 @@ def banco_connection(host_name, user_name, user_password, banco):
     try:
         connection = mysql.connector.connect(
             host=host_name,
+            port=port,
             user=user_name,
             passwd=user_password,
             database=banco
@@ -66,6 +69,7 @@ def verificar_tabela():
     """
     db1 = mysql.connector.connect(
     host="db4free.net",
+    port=3306,
     user="fatecmm",
     password="DanRocha!@#qaz",
     database="envios_tg"
@@ -107,6 +111,7 @@ def enviar_banco(autores, orientador, tema, cidade, ano, resumo, keywords, intro
         # Conectar ao banco de dados
         conn = mysql.connector.connect(
             host="db4free.net",
+            port=3306,
             user="fatecmm",
             password="DanRocha!@#qaz",
             database="envios_tg"
@@ -137,6 +142,7 @@ def buscar_trabalhos(palavra_chave):
         # Conectar ao banco de dados
         conn = mysql.connector.connect(
             host="db4free.net",
+            port=3306,
             user="fatecmm",
             password="DanRocha!@#qaz",
             database="envios_tg"
