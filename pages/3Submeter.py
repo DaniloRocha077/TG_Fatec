@@ -321,12 +321,12 @@ if uploaded_file is not None:
     if botao:
         if enviar:
             #Cria a conexão com o MySql
-            db = condb.create_server_connection("db4free.net", "fatecmm", "DanRocha!@#qaz")
+            db = condb.create_server_connection("db4free.net", 3306, "fatecmm", "DanRocha!@#qaz")
             st.write("Conectou")
             #Verifica se o banco existe
             verifica = condb.verificar_banco()
             #Verifica se existe ou Cria o banco trabalhos_tg
-            dbb = condb.banco_connection("db4free.net", "fatecmm", "DanRocha!@#qaz", "envios_tg")
+            dbb = condb.banco_connection("db4free.net", 3306, "fatecmm", "DanRocha!@#qaz", "envios_tg")
             #Verifica se já existe ou Cria a tabela
             verificar_tb = condb.verificar_tabela()
             
