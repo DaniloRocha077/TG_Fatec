@@ -43,7 +43,7 @@ def verificar_banco():
     #else:
         #st.write("Banco de dados já existe!")
 
-def banco_connection(host_name, user_name, user_password, banco):
+def banco_connection(host_name, port, user_name, user_password, banco):
     """
     Conectar ao banco.
     """
