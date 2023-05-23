@@ -325,7 +325,7 @@ if uploaded_file is not None:
             #Verifica se o banco existe
             verifica = condb.verificar_banco()
             #Verifica se existe ou Cria o banco trabalhos_tg
-            dbb = condb.banco_connection("db4free.net", "fatecmm", "DanRocha!@#qaz", "trabalhos_tg")
+            dbb = condb.banco_connection("db4free.net", "fatecmm", "DanRocha!@#qaz", "envios_tg")
             #Verifica se já existe ou Cria a tabela
             verificar_tb = condb.verificar_tabela()
             
