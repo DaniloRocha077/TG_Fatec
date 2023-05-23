@@ -21,7 +21,7 @@ def verificar_banco():
     verificar banco.
     """
     db = mysql.connector.connect(
-    host="http://db4free.net/",
+    host="db4free.net",
     user="fatecmm",
     password="DanRocha!@#qaz"
 )
@@ -65,7 +65,7 @@ def verificar_tabela():
     verificar tabela.
     """
     db1 = mysql.connector.connect(
-    host="http://db4free.net/",
+    host="db4free.net",
     user="fatecmm",
     password="DanRocha!@#qaz",
     database="trabalhos_tg"
@@ -106,7 +106,7 @@ def enviar_banco(autores, orientador, tema, cidade, ano, resumo, keywords, intro
     try:
         # Conectar ao banco de dados
         conn = mysql.connector.connect(
-            host="http://db4free.net/",
+            host="db4free.net",
             user="fatecmm",
             password="DanRocha!@#qaz",
             database="trabalhos_tg"
@@ -136,7 +136,7 @@ def buscar_trabalhos(palavra_chave):
     try:
         # Conectar ao banco de dados
         conn = mysql.connector.connect(
-            host="http://db4free.net/",
+            host="db4free.net",
             user="fatecmm",
             password="DanRocha!@#qaz",
             database="trabalhos_tg"
