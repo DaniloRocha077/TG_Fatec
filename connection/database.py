@@ -31,7 +31,7 @@ def verificar_banco():
 
     database_existe = False
     for database in databases:
-        if database[0] == "trabalhos_tg":
+        if database[0] == "envios_tg":
             database_existe = False
             return database_existe
 # Criar o banco de dados, se ele não existir
@@ -68,7 +68,7 @@ def verificar_tabela():
     host="db4free.net",
     user="fatecmm",
     password="DanRocha!@#qaz",
-    database="trabalhos_tg"
+    database="envios_tg"
 )
     cursor = db1.cursor()
     cursor.execute("SHOW TABLES")
@@ -109,7 +109,7 @@ def enviar_banco(autores, orientador, tema, cidade, ano, resumo, keywords, intro
             host="db4free.net",
             user="fatecmm",
             password="DanRocha!@#qaz",
-            database="trabalhos_tg"
+            database="envios_tg"
         )
 
         # Criar um cursor para executar as queries SQL
@@ -139,7 +139,7 @@ def buscar_trabalhos(palavra_chave):
             host="db4free.net",
             user="fatecmm",
             password="DanRocha!@#qaz",
-            database="trabalhos_tg"
+            database="envios_tg"
         )
 
         # Criar um cursor para executar as queries SQL
