@@ -37,11 +37,11 @@ def verificar_banco():
             database_existe = False
             return database_existe
 # Criar o banco de dados, se ele não existir
-    if not database_existe:
-        cursor.execute("CREATE DATABASE envios_tg")
-        return True
-    else:
-        st.write("Banco de dados já existe!")
+    #if not database_existe:
+        #cursor.execute("CREATE DATABASE envios_tg")
+        #return True
+    #else:
+        #st.write("Banco de dados já existe!")
 
 def banco_connection(host_name, user_name, user_password, banco):
     """
