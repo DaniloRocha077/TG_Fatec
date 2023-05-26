@@ -325,13 +325,13 @@ if uploaded_file is not None:
             st.write("Conectando ao Servidor")
             #Verifica se o banco existe
             verifica = condb.verificar_banco()
-            
+            st.write("Verificando acesso!")
             #Verifica se existe ou Cria o banco trabalhos_tg
             dbb = condb.banco_connection("db4free.net", 3306, "fatecmm", "DanRocha!@#qaz", "envios_tg")
             
             #Verifica se já existe ou Cria a tabela
             verificar_tb = condb.verificar_tabela()
-            
+            st.write("Enviando os Dados!")
             # Verifica se o trabalho já existe na base de dados
             cursor = dbb.cursor()
             cursor.execute(f"SELECT * FROM tbl_trabalhos WHERE tema='{tema}' AND autores='{autores}' AND resumo='{resumo}'")
