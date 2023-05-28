@@ -120,9 +120,9 @@ def extract_resumo(doc, section_title, next_section_title):
     section_text = ""
 
     for p in doc.paragraphs:
-        if section_title in p.text.upper():
+        if section_title.lower() in p.text.lower():
             section_started = True
-        elif next_section_title in p.text.upper():
+        elif next_section_title.lower() in p.text.lower():
             section_ended = True
 
         if section_started and not section_ended:
@@ -142,13 +142,13 @@ def extract_introducao(doc, section_title, next_section_title):
     section_text = ""
 
     for p in doc.paragraphs:
-        if section_title in p.text:
+        if section_title.lower() in p.text.lower():
             section_started = True
-        elif next_section_title in p.text:
+        elif next_section_title.lower() in p.text.lower():
             section_ended = True
 
         if section_started and not section_ended:
-            section_text += p.text
+            section_text += p.text.strip()
             section_text += " "
 
     section_text = re.sub(section_title, '', section_text, flags=re.IGNORECASE)
