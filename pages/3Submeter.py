@@ -214,52 +214,52 @@ if uploaded_file is not None:
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
 
     if cidade:
-        st.checkbox("Cidade", value=True)
+        st.checkbox("Cidade", value=True, disabled=True)
     else:
         enviar = False
-        st.checkbox("Cidade", value=False)
+        st.checkbox("Cidade", value=False, disabled=True)
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
 
     if keywords:
-        st.checkbox("Palavras-chave", value=True)
+        st.checkbox("Palavras-chave", value=True, disabled=True)
     else:
         enviar = False
-        st.checkbox("Palavras-chave", value=False)
+        st.checkbox("Palavras-chave", value=False, disabled=True)
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
 
     if autores:
-        st.checkbox("Nome dos autores", value=True)
+        st.checkbox("Nome dos autores", value=True, disabled=True)
     else:
         enviar = False
-        st.checkbox("Nome dos autores", value=False)
+        st.checkbox("Nome dos autores", value=False, disabled=True)
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
 
     if orientador:
-        st.checkbox("Orientador(a)", value=True, disabled=True)
+        st.checkbox("Orientador(a)", value=True, disabled=True, disabled=True)
     else:
         enviar = False
-        st.checkbox("Orientador(a)", value=False, disabled=True)
+        st.checkbox("Orientador(a)", value=False, disabled=True, disabled=True)
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
 
     if resumo:
-        st.checkbox("Resumo", value=True, disabled=True)
+        st.checkbox("Resumo", value=True, disabled=True, disabled=True)
     else:
         enviar = False
-        st.checkbox("Resumo", value=False, disabled=True)
+        st.checkbox("Resumo", value=False, disabled=True, disabled=True)
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
 
     if introducao:
-        st.checkbox("Introdução", value=True)
+        st.checkbox("Introdução", value=True, disabled=True)
     else:
         enviar = False
-        st.checkbox("Introdução", value=False)
+        st.checkbox("Introdução", value=False, disabled=True)
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
 
     if conclusao:
-        st.checkbox("Considerações Finais", value=True)
+        st.checkbox("Considerações Finais", value=True, disabled=True)
     else:
         enviar = False
-        st.checkbox("Considerações Finais", value=False)
+        st.checkbox("Considerações Finais", value=False, disabled=True)
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
     
     col1, col2 = st.columns(2)
