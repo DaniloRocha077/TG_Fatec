@@ -235,17 +235,17 @@ if uploaded_file is not None:
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
 
     if orientador:
-        st.checkbox("Orientador(a)", value=True)
+        st.checkbox("Orientador(a)", value=True, disabled=True)
     else:
         enviar = False
-        st.checkbox("Orientador(a)", value=False)
+        st.checkbox("Orientador(a)", value=False, disabled=True)
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
 
     if resumo:
-        st.checkbox("Resumo", value=True)
+        st.checkbox("Resumo", value=True, disabled=True)
     else:
         enviar = False
-        st.checkbox("Resumo", value=False)
+        st.checkbox("Resumo", value=False, disabled=True)
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
 
     if introducao:
