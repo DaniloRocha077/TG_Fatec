@@ -164,9 +164,9 @@ def extract_conclusao(doc, section_title, next_section_title):
     section_text = ""
 
     for p in doc.paragraphs:
-        if section_title in p.text:
+        if section_title.lower() in p.text.lower():
             section_started = True
-        elif next_section_title in p.text:
+        elif next_section_title.lower() in p.text.lower():
             section_ended = True
 
         if section_started and not section_ended:
