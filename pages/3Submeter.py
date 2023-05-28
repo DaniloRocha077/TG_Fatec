@@ -201,16 +201,16 @@ if uploaded_file is not None:
 
     st.write("Confira os itens que foram identificados ou não")
     if tema:
-        st.checkbox("Tema", value=True, disabled=False)
+        st.checkbox("Tema", value=True, disabled=True)
     else:
         enviar = False
-        st.checkbox("Tema", value=False, disabled=False)
+        st.checkbox("Tema", value=False, disabled=True)
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
     if ano:
-        st.checkbox("Ano", value=True)
+        st.checkbox("Ano", value=True, disabled=True)
     else:
         enviar = False
-        st.checkbox("Ano", value=False)
+        st.checkbox("Ano", value=False, disabled=True)
         st.error("Seu Trabalho não apresenta este item ou não foi encontrado, verifique a formatação padrão (para títulos de seções é obrigatório estar maiúsculo!")
 
     if cidade:
