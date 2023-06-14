@@ -333,12 +333,12 @@ def lerArquivo (document):
             cursor = dbb.cursor()
             cursor.execute(f"SELECT * FROM tbl_trabalhos WHERE tema='{tema}' AND autores='{autores}' AND resumo='{resumo}'")
             result = cursor.fetchone()
-            if result is not None:
-                st.markdown("# Já existe um trabalho com esses dados no banco de dados! 😟")
-            else:
+                if result is not None:
+                 st.markdown("# Já existe um trabalho com esses dados no banco de dados! 😟")
+                else:
                 #Envia os dados dos trabalho para o banco
-                enviar_banco = condb.enviar_banco(autores, orientador, tema, cidade, ano, resumo, keywords, introducao, conclusao)
-                st.markdown("# Trabalho enviado com sucesso! 😃")
+                    enviar_banco = condb.enviar_banco(autores, orientador, tema, cidade, ano, resumo, keywords, introducao, conclusao)
+                    st.markdown("# Trabalho enviado com sucesso! 😃")
         else:
             st.markdown("# Seu trabalho não contém todos os itens para envio! 😟")
 else:
