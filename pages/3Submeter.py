@@ -180,7 +180,6 @@ def extract_conclusao(doc, section_title, next_section_title):
     section_text = section_text.strip()
     return section_text
 
-@st.experimental_memo
 # UPLOAD DO ARQUIVO E EXTRAÇÃO
 uploaded_file = st.file_uploader("Envie o seu arquivo", type=['doc', 'docx'])
 if uploaded_file is not None:
