@@ -343,3 +343,5 @@ def lerArquivo (document):
             st.markdown("# Seu trabalho não contém todos os itens para envio! 😟")
     else:
         st.write("Você não enviou o arquivo ainda")
+    
+    return 
