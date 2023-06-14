@@ -170,16 +170,11 @@ def extract_conclusao(doc, section_title, next_section_title):
     section_text = re.sub(section_title, '', section_text, flags=re.IGNORECASE)
     section_text = section_text.strip()
     return section_text
-
 # UPLOAD DO ARQUIVO E EXTRAÇÃO
 uploaded_file = st.file_uploader("Envie o seu arquivo", type=['doc', 'docx'])
 if uploaded_file is not None:
-    v1 = lerArquivo(uploaded_file)
     # Ler o arquivo
-
-@st.cache
-def lerArquivo (document): 
-    doc = docx.Document(dcument)
+    doc = docx.Document(uploaded_file)
 
     # Extrair informações do documento
     autores = extract_autores(doc)
@@ -341,7 +336,5 @@ def lerArquivo (document):
                 st.markdown("# Trabalho enviado com sucesso! 😃")
         else:
             st.markdown("# Seu trabalho não contém todos os itens para envio! 😟")
-    else:
-        st.write("Você não enviou o arquivo ainda")
-    
-    return 
+else:
+    st.write("Você não enviou o arquivo ainda")
