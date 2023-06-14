@@ -335,7 +335,7 @@ def lerArquivo (document):
             result = cursor.fetchone()
             if result is not None:
                 st.markdown("# Já existe um trabalho com esses dados no banco de dados! 😟")
-             else:
+            else:
                 #Envia os dados dos trabalho para o banco
                 enviar_banco = condb.enviar_banco(autores, orientador, tema, cidade, ano, resumo, keywords, introducao, conclusao)
                 st.markdown("# Trabalho enviado com sucesso! 😃")
