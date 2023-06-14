@@ -178,7 +178,7 @@ if uploaded_file is not None:
     # Ler o arquivo
 
 @st.cache
-def lerArquivo (document)
+def lerArquivo (document): 
     doc = docx.Document(dcument)
 
     # Extrair informações do documento
