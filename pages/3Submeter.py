@@ -184,7 +184,7 @@ if uploaded_file is not None:
     ano = extract_year(doc)
     resumo = extract_resumo(doc, "RESUMO", "PALAVRAS-CHAVE")
     keywords = extract_keywords(doc)
-    introducao = extract_introducao(doc, "INTRODUÇÃO", "Estrutura")
+    introducao = extract_introducao(doc, "INTRODUÇÃO", "ESTRUTURA DO TRABALHO")
     conclusao = extract_conclusao(doc, "CONSIDERAÇÕES FINAIS", "REFERÊNCIAS")
     intro = condb.remover_caracteres_invalidos(introducao)
 
