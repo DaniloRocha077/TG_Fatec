@@ -12,6 +12,164 @@ st.write("""
 # Submeter seu trabalho para a Fatec Mogi Mirim
 Aqui você pode submeter o seu trabalho no formato de Word (.docx) para validação dos itens obrigatórios do seu trabalho
 """)
+
+# Funções de extração
+def extract_tema(doc):
+    """
+    Extrai o nome dos integrantes do TCC e o tema do trabalho.
+    """
+    encontrou_mogi_mirim = False
+    for i, p in enumerate(doc.paragraphs):
+        if "MOGI MIRIM" in p.text:
+            encontrou_mogi_mirim = True
+        elif encontrou_mogi_mirim and p.text.strip():
+            integrante = p.text
+            j = i + 1
+            while j < len(doc.paragraphs) and doc.paragraphs[j].text.strip():
+                integrante += " " + doc.paragraphs[j].text
+                j += 1
+            tema = ""
+            if j < len(doc.paragraphs):
+                j += 1
+                while j < len(doc.paragraphs) and not doc.paragraphs[j].text.strip():
+                    j += 1
+                if j < len(doc.paragraphs):
+                    tema = doc.paragraphs[j].text.strip()
+            return tema
+    return None, None
+   
+def extract_keywords(doc):
+    """
+    Extrai as palavras-chave do documento.
+    """
+    for p in doc.paragraphs:
+        if "Palavras-chave:" in p.text:
+            match = re.search(r'Palavras-chave:(.*)', p.text)
+            if match:
+                keywords = match.group(1).split(',')
+                return [kw.strip() for kw in keywords]
+    return []
+
+def extract_city(doc):
+    """
+    Extrai o nome da cidade imediatamente anterior ao parágrafo que contém o ano.
+    """
+    city = ""
+    for p in doc.paragraphs:
+        if re.search(r'\d{4}', p.text):
+            match = re.search(r'(\w+( \w+)*)\s*$', city)
+            if match:
+                return match.group(1)
+            else:
+                return ""
+        else:
+            city = p.text
+    return ""
+
+def extract_year(doc):
+    """
+    Extrai o primeiro número de quatro dígitos consecutivos do documento.
+    """
+    for p in doc.paragraphs:
+        match = re.search(r'\d{4}', p.text)
+        if match:
+            return match.group(0)
+    return None
+
+
+def extract_autores(doc):
+    """
+    Extrai o nome dos integrantes do TCC.
+    """
+    encontrou_mogi_mirim = False
+    for i, p in enumerate(doc.paragraphs):
+        if "MOGI MIRIM" in p.text:
+            encontrou_mogi_mirim = True
+        elif encontrou_mogi_mirim and p.text.strip():
+            integrante = p.text
+            j = i + 1
+            while j < len(doc.paragraphs) and doc.paragraphs[j].text.strip():
+                integrante += " " + doc.paragraphs[j].text
+                j += 1
+            return integrante.strip()
+    return None
+
+def extract_orientador(doc):
+    """
+    Extrai o nome do orientador(a) do TCC.
+    """
+    for p in doc.paragraphs:
+        match = re.search(r'Orientador(?:a)?:\s*(.*)', p.text, re.IGNORECASE)
+        if match:
+            orientador = match.group(1).split(',')
+            return [o.strip() for o in orientador if o.strip()]
+    return []
+
+def extract_resumo(doc, section_title, next_section_title):
+    """
+    Extrai o texto de uma seção do TCC.
+    """
+    section_started = False
+    section_ended = False
+    section_text = ""
+
+    for p in doc.paragraphs:
+        if section_title.lower() in p.text.lower():
+            section_started = True
+        elif next_section_title.lower() in p.text.lower():
+            section_ended = True
+
+        if section_started and not section_ended:
+            section_text += p.text.strip()
+            section_text += " "
+
+    section_text = re.sub(section_title, '', section_text, flags=re.IGNORECASE)
+    section_text = section_text.strip()
+    return section_text
+
+def extract_introducao(doc, section_title, next_section_title):
+    """
+    Extrai o texto de uma seção do TCC.
+    """
+    section_started = False
+    section_ended = False
+    section_text = ""
+
+    for p in doc.paragraphs:
+        if section_title.lower() in p.text.lower():
+            section_started = True
+        elif next_section_title.lower() in p.text.lower():
+            section_ended = True
+
+        if section_started and not section_ended:
+            section_text += p.text.strip()
+            section_text += " "
+
+    section_text = re.sub(section_title, '', section_text, flags=re.IGNORECASE)
+    section_text = section_text.strip()
+    return section_text
+
+def extract_conclusao(doc, section_title, next_section_title):
+    """
+    Extrai o texto de uma seção do TCC.
+    """
+    section_started = False
+    section_ended = False
+    section_text = ""
+
+    for p in doc.paragraphs:
+        if section_title.lower() in p.text.lower():
+            section_started = True
+        elif next_section_title.lower() in p.text.lower():
+            section_ended = True
+
+        if section_started and not section_ended:
+            section_text += p.text.strip()
+            section_text += " "
+
+    section_text = re.sub(section_title, '', section_text, flags=re.IGNORECASE)
+    section_text = section_text.strip()
+    return section_text
 # UPLOAD DO ARQUIVO E EXTRAÇÃO
 uploaded_file = st.file_uploader("Envie o seu arquivo", type=['doc', 'docx'])
 if uploaded_file is not None:
@@ -180,162 +338,3 @@ if uploaded_file is not None:
             st.markdown("# Seu trabalho não contém todos os itens para envio! 😟")
 else:
     st.write("Você não enviou o arquivo ainda")
-    
-# Funções de extração
-def extract_tema(doc):
-    """
-    Extrai o nome dos integrantes do TCC e o tema do trabalho.
-    """
-    encontrou_mogi_mirim = False
-    for i, p in enumerate(doc.paragraphs):
-        if "MOGI MIRIM" in p.text:
-            encontrou_mogi_mirim = True
-        elif encontrou_mogi_mirim and p.text.strip():
-            integrante = p.text
-            j = i + 1
-            while j < len(doc.paragraphs) and doc.paragraphs[j].text.strip():
-                integrante += " " + doc.paragraphs[j].text
-                j += 1
-            tema = ""
-            if j < len(doc.paragraphs):
-                j += 1
-                while j < len(doc.paragraphs) and not doc.paragraphs[j].text.strip():
-                    j += 1
-                if j < len(doc.paragraphs):
-                    tema = doc.paragraphs[j].text.strip()
-            return tema
-    return None, None
-   
-def extract_keywords(doc):
-    """
-    Extrai as palavras-chave do documento.
-    """
-    for p in doc.paragraphs:
-        if "Palavras-chave:" in p.text:
-            match = re.search(r'Palavras-chave:(.*)', p.text)
-            if match:
-                keywords = match.group(1).split(',')
-                return [kw.strip() for kw in keywords]
-    return []
-
-def extract_city(doc):
-    """
-    Extrai o nome da cidade imediatamente anterior ao parágrafo que contém o ano.
-    """
-    city = ""
-    for p in doc.paragraphs:
-        if re.search(r'\d{4}', p.text):
-            match = re.search(r'(\w+( \w+)*)\s*$', city)
-            if match:
-                return match.group(1)
-            else:
-                return ""
-        else:
-            city = p.text
-    return ""
-
-def extract_year(doc):
-    """
-    Extrai o primeiro número de quatro dígitos consecutivos do documento.
-    """
-    for p in doc.paragraphs:
-        match = re.search(r'\d{4}', p.text)
-        if match:
-            return match.group(0)
-    return None
-
-
-def extract_autores(doc):
-    """
-    Extrai o nome dos integrantes do TCC.
-    """
-    encontrou_mogi_mirim = False
-    for i, p in enumerate(doc.paragraphs):
-        if "MOGI MIRIM" in p.text:
-            encontrou_mogi_mirim = True
-        elif encontrou_mogi_mirim and p.text.strip():
-            integrante = p.text
-            j = i + 1
-            while j < len(doc.paragraphs) and doc.paragraphs[j].text.strip():
-                integrante += " " + doc.paragraphs[j].text
-                j += 1
-            return integrante.strip()
-    return None
-
-def extract_orientador(doc):
-    """
-    Extrai o nome do orientador(a) do TCC.
-    """
-    for p in doc.paragraphs:
-        match = re.search(r'Orientador(?:a)?:\s*(.*)', p.text, re.IGNORECASE)
-        if match:
-            orientador = match.group(1).split(',')
-            return [o.strip() for o in orientador if o.strip()]
-    return []
-
-def extract_resumo(doc, section_title, next_section_title):
-    """
-    Extrai o texto de uma seção do TCC.
-    """
-    section_started = False
-    section_ended = False
-    section_text = ""
-
-    for p in doc.paragraphs:
-        if section_title.lower() in p.text.lower():
-            section_started = True
-        elif next_section_title.lower() in p.text.lower():
-            section_ended = True
-
-        if section_started and not section_ended:
-            section_text += p.text.strip()
-            section_text += " "
-
-    section_text = re.sub(section_title, '', section_text, flags=re.IGNORECASE)
-    section_text = section_text.strip()
-    return section_text
-
-def extract_introducao(doc, section_title, next_section_title):
-    """
-    Extrai o texto de uma seção do TCC.
-    """
-    section_started = False
-    section_ended = False
-    section_text = ""
-
-    for p in doc.paragraphs:
-        if section_title.lower() in p.text.lower():
-            section_started = True
-        elif next_section_title.lower() in p.text.lower():
-            section_ended = True
-
-        if section_started and not section_ended:
-            section_text += p.text.strip()
-            section_text += " "
-
-    section_text = re.sub(section_title, '', section_text, flags=re.IGNORECASE)
-    section_text = section_text.strip()
-    return section_text
-
-def extract_conclusao(doc, section_title, next_section_title):
-    """
-    Extrai o texto de uma seção do TCC.
-    """
-    section_started = False
-    section_ended = False
-    section_text = ""
-
-    for p in doc.paragraphs:
-        if section_title.lower() in p.text.lower():
-            section_started = True
-        elif next_section_title.lower() in p.text.lower():
-            section_ended = True
-
-        if section_started and not section_ended:
-            section_text += p.text.strip()
-            section_text += " "
-
-    section_text = re.sub(section_title, '', section_text, flags=re.IGNORECASE)
-    section_text = section_text.strip()
-    return section_text
-
