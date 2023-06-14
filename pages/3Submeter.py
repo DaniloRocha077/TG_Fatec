@@ -14,7 +14,6 @@ Aqui você pode submeter o seu trabalho no formato de Word (.docx) para validaç
 """)
 
 # Funções de extração
-@st.experimental_memo
 def extract_tema(doc):
     """
     Extrai o nome dos integrantes do TCC e o tema do trabalho.
@@ -39,7 +38,6 @@ def extract_tema(doc):
             return tema
     return None, None
    
-@st.experimental_memo
 def extract_keywords(doc):
     """
     Extrai as palavras-chave do documento.
@@ -52,7 +50,6 @@ def extract_keywords(doc):
                 return [kw.strip() for kw in keywords]
     return []
 
-@st.experimental_memo
 def extract_city(doc):
     """
     Extrai o nome da cidade imediatamente anterior ao parágrafo que contém o ano.
@@ -69,7 +66,6 @@ def extract_city(doc):
             city = p.text
     return ""
 
-@st.experimental_memo
 def extract_year(doc):
     """
     Extrai o primeiro número de quatro dígitos consecutivos do documento.
@@ -81,7 +77,6 @@ def extract_year(doc):
     return None
 
 
-@st.experimental_memo
 def extract_autores(doc):
     """
     Extrai o nome dos integrantes do TCC.
@@ -99,7 +94,6 @@ def extract_autores(doc):
             return integrante.strip()
     return None
 
-@st.experimental_memo
 def extract_orientador(doc):
     """
     Extrai o nome do orientador(a) do TCC.
@@ -111,7 +105,6 @@ def extract_orientador(doc):
             return [o.strip() for o in orientador if o.strip()]
     return []
 
-@st.experimental_memo
 def extract_resumo(doc, section_title, next_section_title):
     """
     Extrai o texto de uma seção do TCC.
@@ -134,7 +127,6 @@ def extract_resumo(doc, section_title, next_section_title):
     section_text = section_text.strip()
     return section_text
 
-@st.experimental_memo
 def extract_introducao(doc, section_title, next_section_title):
     """
     Extrai o texto de uma seção do TCC.
@@ -157,7 +149,6 @@ def extract_introducao(doc, section_title, next_section_title):
     section_text = section_text.strip()
     return section_text
 
-@st.experimental_memo
 def extract_conclusao(doc, section_title, next_section_title):
     """
     Extrai o texto de uma seção do TCC.
