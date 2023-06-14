@@ -5,6 +5,7 @@ import docx
 import pydantic
 import connection.database as condb
 
+@st.experimental_memo
 # Configurações da página
 st.set_page_config(page_title="Enviar TCC", page_icon="📤")
 
